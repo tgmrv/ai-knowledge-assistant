@@ -98,7 +98,6 @@ curl -fsS http://127.0.0.1:8000/ask \
 flowchart LR
     TG["Telegram · aiogram"] --> RAG["RAGService"]
     API["REST API · FastAPI"] --> RAG
-    CLI["Пакетный импорт Markdown"] --> RAG
     RAG <-->|"Векторы и фрагменты"| Q["Qdrant"]
     RAG <-->|"Эмбеддинги и ответы"| O["Ollama"]
 ```
