@@ -64,23 +64,6 @@ curl -fsS http://127.0.0.1:8000/ask \
 
    Рабочий `.env` исключён из Git.
 
-   <details>
-   <summary>Как узнать свой Telegram ID</summary>
-
-   Отправь новому боту `/start`. До запуска контейнера запроси обновления через [Telegram Bot API](https://core.telegram.org/bots/api#getupdates). Команда `read -rs` скрывает токен при вводе.
-
-   ```bash
-   printf 'Вставь токен бота и нажми Enter: '
-   read -rs bot_token
-   printf '\n'
-   curl -fsS "https://api.telegram.org/bot${bot_token}/getUpdates"
-   unset bot_token
-   ```
-
-   В ответе найди своё сообщение `/start` и возьми числовой ID из `message.from.id`.
-
-   </details>
-
 3. Запусти бота.
 
    ```bash
