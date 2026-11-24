@@ -1,0 +1,30 @@
+[
+  {
+    "question": "Что Auth Service возвращает после успешного входа?",
+    "expected_path": "microservices_shop/auth-service.md"
+  },
+  {
+    "question": "Как API Gateway определяет пользователя запроса POST /api/orders?",
+    "expected_path": "microservices_shop/api-gateway.md"
+  },
+  {
+    "question": "Какие поля позиции обязательны при создании заказа?",
+    "expected_path": "microservices_shop/order-service.md"
+  },
+  {
+    "question": "Как создать тестовый товар через внутреннее API каталога?",
+    "expected_path": "microservices_shop/catalog-service.md"
+  },
+  {
+    "question": "Как Payment Service имитирует успешную оплату?",
+    "expected_path": "microservices_shop/payment-service.md"
+  },
+  {
+    "question": "Какие данные публикуются в RabbitMQ при успешной оплате?",
+    "expected_path": "microservices_shop/rabbitmq-events.md"
+  },
+  {
+    "question": "Какие компоненты участвуют в покупке и в каком порядке они взаимодействуют?",
+    "expected_path": "microservices_shop/architecture.md"
+  }
+]

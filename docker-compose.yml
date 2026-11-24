@@ -1,0 +1,49 @@
+x-app: &app
+  image: ai-knowledge-assistant:local
+  build: .
+  environment: &app-env
+    QDRANT_URL: http://qdrant:6333
+    OLLAMA_URL: http://ollama:11434
+  depends_on:
+    qdrant:
+      condition: service_started
+    ollama:
+      condition: service_healthy
+
+services:
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: qdrant
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:6333:6333"
+    volumes:
+      - qdrant_storage:/qdrant/storage
+
+  ollama:
+    image: ollama/ollama:latest
+    volumes:
+      - ollama_models:/root/.ollama
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+
+  api:
+    <<: *app
+    command: ["python", "-m", "uvicorn", "app.api.main:app", "--host", "0.0.0.0"]
+    ports:
+      - "127.0.0.1:8000:8000"
+
+  bot:
+    <<: *app
+    command: ["python", "-m", "app.bot.main"]
+    environment:
+      <<: *app-env
+      TELEGRAM_BOT_TOKEN:
+      TELEGRAM_OWNER_ID:
+
+volumes:
+  qdrant_storage:
+  ollama_models:
